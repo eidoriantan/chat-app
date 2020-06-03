@@ -1,0 +1,7 @@
+{
+    "name": "Chat",
+    "short_name": "Chat",
+    "theme_color": "#24292e",
+    "background_color": "#24292e",
+    "display": "standalone"
+}

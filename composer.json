@@ -1,0 +1,8 @@
+{
+    "autoload": {
+        "classmap": ["chat/classes"]
+    },
+    "require": {
+        "cboden/ratchet": "^0.4.2"
+    }
+}
