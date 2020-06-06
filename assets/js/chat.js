@@ -26,7 +26,8 @@ function attachEvent (socket, temp) {
 
 $(document).ready(function () {
   const temp = $('#message-template').prop('content')
-  const socketUrl = 'ws://localhost:8000/'
+  const hostname = window.location.hostname
+  const socketUrl = 'ws://' + hostname + ':8000/'
 
   let profile = getProfile()
   let socket = new WebSocket(socketUrl + profile.channel)
