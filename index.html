@@ -27,7 +27,7 @@
   </header>
 
   <main>
-    <div class="d-flex flex-row justify-content-around w-75 mx-auto my-5">
+    <div class="d-flex flex-column flex-md-row justify-content-around w-75 mx-auto my-5">
       <div class="d-flex flex-column flex-grow-1">
         <div class="card">
           <header class="card-header">Chatbox</header>
@@ -45,7 +45,8 @@
         </form>
       </div>
 
-      <form id="sender-form" action="" method="GET" class="d-flex flex-column m-4">
+      <form id="sender-form" action="" method="GET" class="d-flex flex-column my-3 mx-4">
+        <h3>Settings</h3>
         <div class="form-group">
           <label for="sender-name">Nickname:</label>
           <input id="sender-name" name="sender-name" type="text" value="Anonymous" class="form-control" required>
