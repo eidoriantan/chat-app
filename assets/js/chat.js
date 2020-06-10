@@ -53,10 +53,8 @@ $(document).ready(function () {
       message: message
     }
 
-    if (message === '') return
-
     $('#message').val('')
-    socket.send(JSON.stringify(data))
+    if (message !== '') socket.send(JSON.stringify(data))
   })
 
   $('#sender-form').submit(function (event) {
