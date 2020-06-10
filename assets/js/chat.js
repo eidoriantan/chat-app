@@ -32,10 +32,11 @@ function attachEvents (socket, temp) {
 $(document).ready(function () {
   const temp = $('#message-template').prop('content')
   const hostname = window.location.hostname
-  const socketUrl = 'ws://' + hostname + ':8000/'
+  const port = '8000'
+  const socketUrl = 'ws://' + hostname + ':' + port
 
   let profile = getProfile()
-  let socket = new WebSocket(socketUrl + profile.channel)
+  let socket = new WebSocket(socketUrl + '/' + profile.channel)
   attachEvents(socket, temp)
 
   $('#send-form').submit(function (event) {
