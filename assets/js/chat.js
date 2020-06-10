@@ -6,7 +6,12 @@ function getProfile () {
   }
 }
 
-function attachEvent (socket, temp) {
+function attachEvents (socket, temp) {
+  socket.onerror = function (event) {
+    console.error(event)
+    alert('Cannot connect to server!')
+  }
+
   socket.addEventListener('message', function (event) {
     const messages = $('#messages')
     const message = $(temp).clone(true, true)
@@ -31,11 +36,15 @@ $(document).ready(function () {
 
   let profile = getProfile()
   let socket = new WebSocket(socketUrl + profile.channel)
-
-  attachEvent(socket, temp)
+  attachEvents(socket, temp)
 
   $('#send-form').submit(function (event) {
     event.preventDefault()
+
+    if (socket.readyState !== WebSocket.OPEN) {
+      alert('Cannot connect to server')
+      throw new Error('Cannot connect to server')
+    }
 
     const message = $('#message').val().trim()
     const data = {
@@ -53,6 +62,11 @@ $(document).ready(function () {
   $('#sender-form').submit(function (event) {
     event.preventDefault()
 
+    if (socket.readyState !== WebSocket.OPEN) {
+      alert('Cannot connect to server')
+      throw new Error('Cannot connect to server')
+    }
+
     const oldProfile = profile
     profile = getProfile()
 
@@ -61,7 +75,7 @@ $(document).ready(function () {
       socket.close()
 
       socket = new WebSocket(socketUrl + channel)
-      attachEvent(socket, temp)
+      attachEvents(socket, temp)
     }
 
     alert('Settings was saved!')
