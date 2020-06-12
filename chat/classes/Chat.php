@@ -24,7 +24,7 @@ class Chat implements MessageComponentInterface {
     $json = json_decode($msg, true);
 
     if ($json === null) return;
-    else if (!$json['sender'] || !$json['time'] || !$json['message']) return;
+    else if (!$json['name'] || !$json['content']) return;
 
     $this->clients->rewind();
     while ($this->clients->valid()) {

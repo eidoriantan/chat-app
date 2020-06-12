@@ -1,4 +1,41 @@
 
+const hostname = window.location.hostname
+const port = '8000'
+
+function connect (channel) {
+  const url = 'ws://' + hostname + ':' + port + '/' + channel
+  const socket = new WebSocket(url)
+  const temp = $('#message-template').prop('content')
+
+  socket.onerror = function (event) {
+    console.error(event)
+    alert('Cannot connect to server!')
+  }
+
+  socket.addEventListener('message', function (event) {
+    const data = JSON.parse(event.data)
+    switch (data.name) {
+      case 'message': {
+        const container = $('#messages')[0]
+        const message = $(temp).clone(true, true)
+
+        $(message).find('[data-temp="sender"]').text(data.content.sender)
+        $(message).find('[data-temp="time"]').text(data.content.time)
+        $(message).find('[data-temp="message"]').text(data.content.message)
+
+        $(container).append(message)
+        container.scrollTo({
+          top: container.scrollHeight,
+          behavior: 'smooth'
+        })
+        break
+      }
+    }
+  })
+
+  return socket
+}
+
 function getProfile () {
   return {
     username: $('#sender-name').val(),
@@ -6,38 +43,9 @@ function getProfile () {
   }
 }
 
-function attachEvents (socket, temp) {
-  socket.onerror = function (event) {
-    console.error(event)
-    alert('Cannot connect to server!')
-  }
-
-  socket.addEventListener('message', function (event) {
-    const messages = $('#messages')
-    const message = $(temp).clone(true, true)
-    const data = JSON.parse(event.data)
-
-    $(message).find('[data-temp="sender"]').text(data.sender)
-    $(message).find('[data-temp="time"]').text(data.time)
-    $(message).find('[data-temp="message"]').text(data.message)
-    messages.append(message)
-
-    messages[0].scrollTo({
-      top: messages.prop('scrollHeight'),
-      behavior: 'smooth'
-    })
-  })
-}
-
 $(document).ready(function () {
-  const temp = $('#message-template').prop('content')
-  const hostname = window.location.hostname
-  const port = '8000'
-  const socketUrl = 'ws://' + hostname + ':' + port
-
   let profile = getProfile()
-  let socket = new WebSocket(socketUrl + '/' + profile.channel)
-  attachEvents(socket, temp)
+  let socket = connect(profile.channel)
 
   $('#send-form').submit(function (event) {
     event.preventDefault()
@@ -49,9 +57,12 @@ $(document).ready(function () {
 
     const message = $('#message').val().trim()
     const data = {
-      sender: profile.username,
-      time: new Date().toUTCString(),
-      message: message
+      name: 'message',
+      content: {
+        sender: profile.username,
+        time: new Date().toUTCString(),
+        message: message
+      }
     }
 
     $('#message').val('')
@@ -72,9 +83,7 @@ $(document).ready(function () {
     if (oldProfile.channel !== profile.channel) {
       $('#messages').empty()
       socket.close()
-
-      socket = new WebSocket(socketUrl + channel)
-      attachEvents(socket, temp)
+      socket = connect(profile.channel)
     }
 
     alert('Settings was saved!')
