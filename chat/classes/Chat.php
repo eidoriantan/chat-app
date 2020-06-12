@@ -20,19 +20,36 @@ class Chat implements MessageComponentInterface {
   }
 
   public function onMessage (ConnectionInterface $from, $msg) {
-    $channel = '';
     $json = json_decode($msg, true);
     $json['from'] = $from->resourceId;
 
     if ($json === null || !$json['name'] || !$json['content']) return;
     else $msg = json_encode($json);
 
+    $clients = $this->getChannelUsers($from);
+    foreach ($clients as $client) $client->send($msg);
+  }
+
+  public function onClose (ConnectionInterface $conn) {
+    $this->clients->detach($conn);
+    echo "Connection {$conn->resourceId} had disconnected\n";
+  }
+
+  public function onError (ConnectionInterface $conn, \Exception $e) {
+    $conn->close();
+    echo "An error has occured: {$e->getMessage()}\n";
+  }
+
+  private function getChannelUsers (ConnectionInterface $conn) {
+    $channel = '';
+    $clients = [];
+
     $this->clients->rewind();
     while ($this->clients->valid()) {
       $client = $this->clients->current();
       $info = $this->clients->getInfo();
 
-      if ($client === $from) {
+      if ($client === $conn) {
         $channel = $info['channel'];
         break;
       }
@@ -45,19 +62,11 @@ class Chat implements MessageComponentInterface {
       $client = $this->clients->current();
       $info = $this->clients->getInfo();
 
-      if ($info['channel'] === $channel) $client->send($msg);
+      if ($info['channel'] === $channel) array_push($clients, $client);
       $this->clients->next();
     }
-  }
 
-  public function onClose (ConnectionInterface $conn) {
-    $this->clients->detach($conn);
-    echo "Connection {$conn->resourceId} had disconnected\n";
-  }
-
-  public function onError (ConnectionInterface $conn, \Exception $e) {
-    $conn->close();
-    echo "An error has occured: {$e->getMessage()}\n";
+    return $clients;
   }
 }
 
