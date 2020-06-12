@@ -5,7 +5,8 @@ const port = '8000'
 function connect (channel) {
   const url = 'ws://' + hostname + ':' + port + '/' + channel
   const socket = new WebSocket(url)
-  const temp = $('#message-template').prop('content')
+  const messageTemp = $('#message-template').prop('content')
+  const joinTemp = $('#join-template').prop('content')
 
   socket.onerror = function (event) {
     console.error(event)
@@ -14,10 +15,11 @@ function connect (channel) {
 
   socket.addEventListener('message', function (event) {
     const data = JSON.parse(event.data)
+    const container = $('#messages')[0]
+
     switch (data.name) {
       case 'message': {
-        const container = $('#messages')[0]
-        const message = $(temp).clone(true, true)
+        const message = $(messageTemp).clone(true, true)
 
         $(message).find('[data-temp="sender"]').text(data.content.sender)
         $(message).find('[data-temp="sender-id"]').text('#' + data.from)
@@ -25,6 +27,18 @@ function connect (channel) {
         $(message).find('[data-temp="message"]').text(data.content.message)
 
         $(container).append(message)
+        container.scrollTo({
+          top: container.scrollHeight,
+          behavior: 'smooth'
+        })
+        break
+      }
+
+      case 'join': {
+        const join = $(joinTemp).clone(true, true)
+        $(join).find('[data-temp="user-id"]').text('#' + data.id)
+
+        $(container).append(join)
         container.scrollTo({
           top: container.scrollHeight,
           behavior: 'smooth'

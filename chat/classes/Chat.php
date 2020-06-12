@@ -16,6 +16,17 @@ class Chat implements MessageComponentInterface {
     $path = $conn->httpRequest->getUri()->getPath();
     $channel = explode('/', $path)[1];
     $this->clients->attach($conn, ['channel' => $channel]);
+
+    $clients = $this->getChannelUsers($conn);
+    foreach ($clients as $client) {
+      $event = json_encode([
+        'name' => 'join',
+        'id' => $conn->resourceId
+      ]);
+
+      $client->send($event);
+    }
+
     echo "New connection was attached: {$conn->resourceId}\n";
   }
 
