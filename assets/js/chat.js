@@ -20,6 +20,7 @@ function connect (channel) {
         const message = $(temp).clone(true, true)
 
         $(message).find('[data-temp="sender"]').text(data.content.sender)
+        $(message).find('[data-temp="sender-id"]').text('#' + data.from)
         $(message).find('[data-temp="time"]').text(data.content.time)
         $(message).find('[data-temp="message"]').text(data.content.message)
 

@@ -64,7 +64,10 @@
     <template id="message-template">
       <li class="list-group-item">
         <div class="d-flex justify-content-between w-100">
-          <h5 class="mb-1" data-temp="sender"></h5>
+          <div class="d-flex flex-row">
+            <h5 class="mb-1" data-temp="sender"></h5>
+            <small class="text-muted ml-2" data-temp="sender-id"></small>
+          </div>
           <small data-temp="time"></small>
         </div>
         <p data-temp="message"></p>

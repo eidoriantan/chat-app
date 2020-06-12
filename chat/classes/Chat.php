@@ -22,9 +22,10 @@ class Chat implements MessageComponentInterface {
   public function onMessage (ConnectionInterface $from, $msg) {
     $channel = '';
     $json = json_decode($msg, true);
+    $json['from'] = $from->resourceId;
 
-    if ($json === null) return;
-    else if (!$json['name'] || !$json['content']) return;
+    if ($json === null || !$json['name'] || !$json['content']) return;
+    else $msg = json_encode($json);
 
     $this->clients->rewind();
     while ($this->clients->valid()) {
