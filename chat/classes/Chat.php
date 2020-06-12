@@ -42,6 +42,16 @@ class Chat implements MessageComponentInterface {
   }
 
   public function onClose (ConnectionInterface $conn) {
+    $clients = $this->getChannelUsers($conn);
+    foreach ($clients as $client) {
+      $event = json_encode([
+        'name' => 'leave',
+        'id' => $conn->resourceId
+      ]);
+
+      $client->send($event);
+    }
+
     $this->clients->detach($conn);
     echo "Connection {$conn->resourceId} had disconnected\n";
   }

@@ -77,7 +77,15 @@
     <template id="join-template">
       <li class="list-group-item">
         <div class="d-flex flex-row text-muted">
-          A new user had joined: <i data-temp="user-id"></i>
+          A new user had joined: <i class="ml-2" data-temp="user-id"></i>
+        </div>
+      </li>
+    </template>
+
+    <template id="leave-template">
+      <li class="list-group-item">
+        <div class="d-flex flex-row text-danger">
+          User <i class="mx-2" data-temp="user-id"></i> leaves the channel
         </div>
       </li>
     </template>
