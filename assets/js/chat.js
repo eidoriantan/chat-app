@@ -17,12 +17,10 @@ function connect (channel) {
   socket.addEventListener('message', function (event) {
     const data = JSON.parse(event.data)
     const container = $('#messages')[0]
-    const messageTemp = $('#message-template').prop('content')
-    const joinTemp = $('#join-template').prop('content')
-    const leaveTemp = $('#leave-template').prop('content')
 
     switch (data.name) {
       case 'message': {
+        const messageTemp = $('#message-template').prop('content')
         const message = $(messageTemp).clone(true, true)
 
         $(message).find('[data-temp="sender"]').text(data.content.sender)
@@ -39,6 +37,7 @@ function connect (channel) {
       }
 
       case 'join': {
+        const joinTemp = $('#join-template').prop('content')
         const join = $(joinTemp).clone(true, true)
         $(join).find('[data-temp="user-id"]').text('#' + data.id)
 
@@ -51,9 +50,10 @@ function connect (channel) {
       }
 
       case 'leave': {
+        const leaveTemp = $('#leave-template').prop('content')
         const leave = $(leaveTemp).clone(true, true)
-        $(leave).find('[data-temp="user-id"]').text('#' + data.id)
 
+        $(leave).find('[data-temp="user-id"]').text('#' + data.id)
         $(container).append(leave)
         container.scrollTo({
           top: container.scrollHeight,
