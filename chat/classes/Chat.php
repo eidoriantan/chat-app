@@ -21,7 +21,8 @@ class Chat implements MessageComponentInterface {
     foreach ($clients as $client) {
       $event = json_encode([
         'name' => 'join',
-        'id' => $conn->resourceId
+        'id' => $conn->resourceId,
+        'onlineUsers' => count($clients)
       ]);
 
       $client->send($event);
@@ -45,9 +46,12 @@ class Chat implements MessageComponentInterface {
   public function onClose (ConnectionInterface $conn) {
     $clients = $this->getChannelUsers($conn);
     foreach ($clients as $client) {
+      if ($conn === $client) continue;
+
       $event = json_encode([
         'name' => 'leave',
-        'id' => $conn->resourceId
+        'id' => $conn->resourceId,
+        'onlineUsers' => count($clients) - 1
       ]);
 
       $client->send($event);

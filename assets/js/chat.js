@@ -40,7 +40,9 @@ function connect (channel) {
       case 'join': {
         const joinTemp = $('#join-template').prop('content')
         const join = $(joinTemp).clone(true, true)
+
         $(join).find('[data-temp="user-id"]').text('#' + data.id)
+        $('#online-users').text(data.onlineUsers)
 
         $(container).append(join)
         container.scrollTo({
@@ -55,6 +57,8 @@ function connect (channel) {
         const leave = $(leaveTemp).clone(true, true)
 
         $(leave).find('[data-temp="user-id"]').text('#' + data.id)
+        $('#online-users').text(data.onlineUsers)
+
         $(container).append(leave)
         container.scrollTo({
           top: container.scrollHeight,
