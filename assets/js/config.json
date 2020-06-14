@@ -1,6 +1,8 @@
+---
+---
 {
   "websocket": {
-    "hostname": "",
-    "port": "8000"
+    "hostname": "{{ site.websocket.hostname }}",
+    "port": "{{ site.websocket.port }}"
   }
 }

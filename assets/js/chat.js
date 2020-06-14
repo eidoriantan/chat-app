@@ -1,11 +1,12 @@
 
 let hostname, port
-$.getJSON('/assets/js/config.json', function (data) {
+const config = $.getJSON('/assets/js/config.json', function (data) {
   hostname = data.websocket.hostname || window.location.hostname
   port = data.websocket.port || '80'
 })
 
-function connect (channel) {
+async function connect (channel) {
+  await config
   const url = 'ws://' + hostname + ':' + port + '/' + channel
   const socket = new WebSocket(url)
 
@@ -79,9 +80,9 @@ function getProfile () {
   }
 }
 
-$(document).ready(function () {
+$(document).ready(async function () {
   let profile = getProfile()
-  let socket = connect(profile.channel)
+  let socket = await connect(profile.channel)
 
   $('#send-form').submit(function (event) {
     event.preventDefault()
@@ -100,11 +101,13 @@ $(document).ready(function () {
       }
     }
 
-    $('#message').val('')
-    if (message !== '') socket.send(JSON.stringify(data))
+    if (message !== '') {
+      $('#message').val('')
+      socket.send(JSON.stringify(data))
+    }
   })
 
-  $('#sender-form').submit(function (event) {
+  $('#sender-form').submit(async function (event) {
     event.preventDefault()
 
     if (socket.readyState !== WebSocket.OPEN) {
@@ -118,7 +121,7 @@ $(document).ready(function () {
     if (oldProfile.channel !== profile.channel) {
       $('#messages').empty()
       socket.close()
-      socket = connect(profile.channel)
+      socket = await connect(profile.channel)
     }
 
     alert('Settings was saved!')
