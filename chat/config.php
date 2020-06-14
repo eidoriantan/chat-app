@@ -1,7 +1,7 @@
 <?php
 
 $config = [
-  'port' => 8000
+  'port' => $_ENV['PORT'] || 8000
 ];
 
 ?>
