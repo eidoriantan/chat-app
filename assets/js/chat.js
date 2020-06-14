@@ -22,11 +22,11 @@ function connect (channel) {
       case 'message': {
         const messageTemp = $('#message-template').prop('content')
         const message = $(messageTemp).clone(true, true)
-        const time = new Date(data.timestamp * 1000).toLocaleString()
+        const date = new Date(data.timestamp * 1000).toLocaleString()
 
         $(message).find('[data-temp="sender"]').text(data.content.sender)
         $(message).find('[data-temp="sender-id"]').text('#' + data.from)
-        $(message).find('[data-temp="time"]').text(time)
+        $(message).find('[data-temp="date"]').text(date)
         $(message).find('[data-temp="message"]').text(data.content.message)
 
         $(container).append(message)
