@@ -1,0 +1,6 @@
+{
+  "websocket": {
+    "hostname": "",
+    "port": "8000"
+  }
+}

@@ -1,6 +1,9 @@
 
-const hostname = window.location.hostname
-const port = '8000'
+let hostname, port
+$.getJSON('/assets/js/config.json', function (data) {
+  hostname = data.websocket.hostname || window.location.hostname
+  port = data.websocket.port || '80'
+})
 
 function connect (channel) {
   const url = 'ws://' + hostname + ':' + port + '/' + channel
