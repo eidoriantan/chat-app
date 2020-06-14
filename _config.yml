@@ -4,6 +4,8 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - README.md
+  - chat
+  - vendor
 
 sass:
   style: compressed
@@ -16,7 +18,7 @@ color: "#24292e"
 
 websocket:
   hostname: eidoriantan-chatapp.herokuapp.com
-  port: 8000
+  port: 443
 
 plugins:
   - jekyll-github-metadata
