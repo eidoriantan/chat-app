@@ -33,6 +33,7 @@ class Chat implements MessageComponentInterface {
   public function onMessage (ConnectionInterface $from, $msg) {
     $json = json_decode($msg, true);
     $json['from'] = $from->resourceId;
+    $json['timestamp'] = time();
 
     if ($json === null || !$json['name'] || !$json['content']) return;
     else $msg = json_encode($json);
