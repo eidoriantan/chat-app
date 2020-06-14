@@ -7,7 +7,8 @@ const config = $.getJSON('/assets/js/config.json', function (data) {
 
 async function connect (channel) {
   await config
-  const url = 'ws://' + hostname + ':' + port + '/' + channel
+  const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws'
+  const url = protocol + '://' + hostname + ':' + port + '/' + channel
   const socket = new WebSocket(url)
 
   socket.onerror = function (event) {
