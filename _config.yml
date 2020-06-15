@@ -17,8 +17,8 @@ tagline: Chat with another anonymous users
 color: "#24292e"
 
 websocket:
-  hostname: eidoriantan-chatapp.herokuapp.com
-  port: 443
+  hostname: 52.149.182.90
+  port: 80
 
 plugins:
   - jekyll-github-metadata
