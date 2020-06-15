@@ -1,7 +1,7 @@
 <?php
 
 $config = [
-  'port' => $_ENV['PORT'] || 8000
+  'port' => isset($_ENV['PORT']) ? $_ENV['PORT'] || 8000
 ];
 
 ?>
