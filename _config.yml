@@ -18,7 +18,7 @@ color: "#24292e"
 
 websocket:
   hostname: 52.149.182.90
-  port: 80
+  port: 8000
 
 plugins:
   - jekyll-github-metadata
