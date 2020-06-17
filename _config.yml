@@ -17,7 +17,7 @@ tagline: Chat with another anonymous users
 color: "#24292e"
 
 websocket:
-  hostname: 52.149.182.90
+  hostname: chatapp-websocket.eastus.cloudapp.azure.com
   port: 8000
 
 plugins:
