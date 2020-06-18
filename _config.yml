@@ -24,6 +24,5 @@ websocket:
 
 plugins:
   - jekyll-github-metadata
-  - jekyll-octicons
   - jekyll-seo-tag
   - jekyll-sitemap
