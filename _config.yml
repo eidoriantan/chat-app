@@ -1,11 +1,13 @@
 
 exclude:
+  - chat/
+  - vendor/
   - CNAME
+  - composer.json
+  - composer.lock
   - Gemfile
   - Gemfile.lock
   - README.md
-  - chat
-  - vendor
 
 sass:
   style: compressed
