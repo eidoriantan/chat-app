@@ -14,9 +14,14 @@ require_once __DIR__ . '/config.php';
 $chat = new Chat();
 $ws_server = new WsServer($chat);
 $app = new HttpServer($ws_server);
+
 $port = $config['port'];
 $cert = $config['ssl']['certificate'];
 $key = $config['ssl']['key'];
+
+if ($cert === '' || $key === '') {
+  die('SSL certificate and private key was not provided.');
+}
 
 $loop = Factory::create();
 $websockets = new Server("0.0.0.0:$port", $loop);

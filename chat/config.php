@@ -3,8 +3,8 @@
 $config = [
   'port' => isset($_SERVER['PORT']) ? $_SERVER['PORT'] : 8000,
   'ssl' => [
-    'certificate' => '/home/eidoriantan/0000_cert.pem',
-    'key' => '/home/eidoriantan/private.key'
+    'certificate' => isset($_SERVER['SSL_CERT']) ? $_SERVER['SSL_CERT'] : '',
+    'key' => isset($_SERVER['SSL_KEY']) ? $_SERVER['SSL_KEY'] : ''
   ]
 ];
 
