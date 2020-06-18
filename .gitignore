@@ -1,9 +1,13 @@
 
 .DS_Store
 
+# Composer-generated files
+vendor/
+
 # Jekyll-generated files
-_site
-.sass-cache
+_site/
+.sass-cache/
+.jekyll-cache/
 .jekyll-metadata
 
 Gemfile.lock
