@@ -1,5 +1,6 @@
 <?php
 
+$development = isset($_SERVER['CHAT_DEVELOPMENT']);
 $config = [
   'port' => isset($_SERVER['PORT']) ? $_SERVER['PORT'] : 8000,
   'ssl' => [
