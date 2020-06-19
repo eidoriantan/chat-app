@@ -11,7 +11,7 @@ scripts:
   <div class="d-flex flex-column flex-grow-1">
     <div class="card">
       <header class="card-header">
-        {% octicon comment-discussion height:20 aria-hidden:true %} Chatbox
+        <i class="fas fa-comments"></i> Chatbox
       </header>
       <ul id="messages" class="list-group list-group-flush overflow-auto chat-box"></ul>
     </div>
@@ -23,11 +23,11 @@ scripts:
       </div>
 
       <button type="submit" class="btn btn-primary">
-        {% octicon paper-airplane height:20 fill:#fff aria-hidden:true %} Send
+        <i class="fas fa-paper-plane"></i> Send
       </button>
 
       <button type="reset" class="btn btn-secondary">
-        {% octicon x-circle height:20 fill:#fff aria-hidden:true %} Clear
+        <i class="fas fa-undo"></i> Clear
       </button>
     </form>
   </div>
@@ -38,7 +38,10 @@ scripts:
     </div>
 
     <form id="sender-form" action="#" method="GET" class="d-flex flex-column">
-      <h3>{% octicon settings height:24 aria-hidden:true %} Settings</h3>
+      <h3>
+        <i class="fas fa-cog"></i> Settings
+      </h3>
+
       <div class="form-group">
         <label for="sender-name">Nickname:</label>
         <input id="sender-name" name="sender-name" type="text" value="Anonymous" class="form-control" required>
@@ -50,7 +53,7 @@ scripts:
       </div>
 
       <button type="submit" class="btn btn-primary">
-        {% octicon check height:20 fill:#fff aria-hidden:true %} Save
+        <i class="fas fa-save"></i> Save
       </button>
     </form>
   </div>
