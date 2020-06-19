@@ -5,6 +5,9 @@
     "short_name": "Chat",
     "start_url": "./",
     "display": "standalone",
+    "description": "{{ site.tagline }}",
+    "background_color": "{{ site.color }}",
+    "theme_color": "{{ site.color }}",
     "icons": [
         {
             "src": "/assets/android-chrome-192x192.png",
@@ -16,7 +19,5 @@
             "sizes": "512x512",
             "type": "image/png"
         }
-    ],
-    "theme_color": "{{ site.color }}",
-    "background_color": "{{ site.color }}"
+    ]
 }
