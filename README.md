@@ -22,6 +22,3 @@ You can also show your support by becoming a patron!
 
 [homepage]: https://chat.eidoriantan.tech
 [W3C Validator]: https://validator.w3.org/nu/?doc=https%3A%2F%2Fchat.eidoriantan.tech%2F
-
-[Jekyll]: https://jekyllrb.com
-[GitHub Pages]: https://pages.github.com
