@@ -8,6 +8,8 @@ on:
 
 jobs:
   build:
+    if: "!contains(github.event.head_commit.message, 'skip ci')"
+
     runs-on: ubuntu-latest
 
     steps:
@@ -17,3 +19,5 @@ jobs:
         docker run \
         -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
         jekyll/builder:latest /bin/bash -c "chmod 777 /srv/jekyll && jekyll build --future"
+      env:
+        JEKYLL_GITHUB_TOKEN: ${{ secrets.JEKYLL_GITHUB_TOKEN }}
