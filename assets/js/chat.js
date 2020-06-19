@@ -1,12 +1,10 @@
+---
+---
 
-let hostname, port
-const config = $.getJSON('/assets/js/config.json', function (data) {
-  hostname = data.websocket.hostname || window.location.hostname
-  port = data.websocket.port || '80'
-})
+const hostname = '{{ site.websocket.hostname }}'
+const port = '{{ site.websocket.port }}'
 
 async function connect (channel) {
-  await config
   const url = 'wss://' + hostname + ':' + port + '/' + channel
   const socket = new WebSocket(url)
 
