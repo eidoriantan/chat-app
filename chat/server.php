@@ -20,7 +20,11 @@ $cert = $config['ssl']['certificate'];
 $key = $config['ssl']['key'];
 
 if ($cert === '' || $key === '') {
-  die('SSL certificate and private key was not provided.');
+  die('SSL certificate and/or private key was not provided.');
+}
+
+if (!file_exists($cert) || !file_exists($key)) {
+  die('SSL certificate and/or private key was not found');
 }
 
 $loop = Factory::create();
@@ -33,6 +37,7 @@ $websockets = new SecureServer($websockets, $loop, [
 ]);
 
 $server = new IoServer($app, $websockets, $loop);
+echo "Server is running on port: $port\r\n";
 $server->run();
 
 ?>
