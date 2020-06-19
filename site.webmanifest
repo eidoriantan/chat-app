@@ -3,7 +3,20 @@
 {
     "name": "Chat",
     "short_name": "Chat",
+    "start_url": "./",
+    "display": "standalone",
+    "icons": [
+        {
+            "src": "/assets/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/assets/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
     "theme_color": "{{ site.color }}",
-    "background_color": "{{ site.color }}",
-    "display": "standalone"
+    "background_color": "{{ site.color }}"
 }

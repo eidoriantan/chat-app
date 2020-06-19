@@ -8,6 +8,10 @@
 
   <link href="{{ '/LICENSE.txt' | relative_url }}" rel="license">
   <link href="{{ '/site.webmanifest' | relative_url }}" rel="manifest">
+  <link href="{{ '/assets/apple-touch-icon.png' | relative_url }}" rel="apple-touch-icon" sizes="180x180">
+  <link href="{{ '/assets/favicon-32x32.png' | relative_url }}" rel="icon" type="image/png" sizes="32x32">
+  <link href="{{ '/assets/favicon-16x16.png' | relative_url }}" rel="icon" type="image/png" sizes="16x16">
+  <link href="{{ '/assets/safari-pinned-tab.svg' | relative_url }}" rel="mask-icon" color="{{ site.color }}">
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
   {% for stylesheet in page.stylesheets %}
   <link href="{{ stylesheet | append: '?v=' | append: site.github.build_revision | relative_url }}" rel="stylesheet">
@@ -26,14 +30,18 @@
 
 <body>
   <header class="navbar navbar-light bg-light">
-    <a href="{{ site.github.url }}" class="navbar-brand">Chat</a>
+    <a href="{{ site.github.url }}" class="navbar-brand">
+      <img src="{{ '/assets/images/icon.png' | relative_url }}" width="30" height="30" alt="Chat Logo" class="d-inline-block align-top">
+      Chat
+    </a>
   </header>
 
   <main>
     {{ content }}
   </main>
 
-  <footer class="d-flex justify-content-center my-3">
+  <footer class="d-flex flex-column text-center my-3">
+    <span>Website Logo made by <a href="https://www.flaticon.com/authors/freepik">Freepik</a> from <a href="https://www.flaticon.com/">www.flaticon.com</a></span>
     <span>Copyright &copy; 2020, <a href="{{ site.github.owner.blog }}">@{{ site.github.owner.login }}</a></span>
   </footer>
 </body>
