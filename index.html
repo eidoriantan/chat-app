@@ -1,7 +1,7 @@
 ---
 layout: default
 keywords: browser, web, chat, message, anonymous, online
-last_modified_at: 2020-06-15T21:50:00+08:00
+last_modified_at: 2020-06-19T14:47:00+08:00
 stylesheets:
  - /assets/css/chat.css
 scripts:
@@ -10,7 +10,9 @@ scripts:
 <div class="d-flex flex-column flex-md-row justify-content-around w-75 mx-auto my-5">
   <div class="d-flex flex-column flex-grow-1">
     <div class="card">
-      <header class="card-header">Chatbox</header>
+      <header class="card-header">
+        {% octicon comment-discussion height:20 aria-hidden:true %} Chatbox
+      </header>
       <ul id="messages" class="list-group list-group-flush overflow-auto chat-box"></ul>
     </div>
 
@@ -20,8 +22,13 @@ scripts:
         <textarea id="message" name="message" rows="3" class="form-control"></textarea>
       </div>
 
-      <button type="submit" class="btn btn-primary">Send</button>
-      <button type="reset" class="btn btn-secondary">Clear</button>
+      <button type="submit" class="btn btn-primary">
+        {% octicon paper-airplane height:20 fill:#fff aria-hidden:true %} Send
+      </button>
+
+      <button type="reset" class="btn btn-secondary">
+        {% octicon x-circle height:20 fill:#fff aria-hidden:true %} Clear
+      </button>
     </form>
   </div>
 
@@ -31,7 +38,7 @@ scripts:
     </div>
 
     <form id="sender-form" action="#" method="GET" class="d-flex flex-column">
-      <h3>Settings</h3>
+      <h3>{% octicon settings height:24 aria-hidden:true %} Settings</h3>
       <div class="form-group">
         <label for="sender-name">Nickname:</label>
         <input id="sender-name" name="sender-name" type="text" value="Anonymous" class="form-control" required>
@@ -42,7 +49,9 @@ scripts:
         <input id="channel" name="channel" type="number" value="0" class="form-control" required>
       </div>
 
-      <button type="submit" class="btn btn-primary">Save</button>
+      <button type="submit" class="btn btn-primary">
+        {% octicon check height:20 fill:#fff aria-hidden:true %} Save
+      </button>
     </form>
   </div>
 </div>
