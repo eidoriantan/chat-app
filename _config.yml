@@ -16,7 +16,7 @@ author: Adriane Justine Tan
 email: eidoriantan@gmail.com
 
 tagline: Chat with another anonymous users
-color: "#24292e"
+color: "#f8f9fa"
 
 websocket:
   hostname: chatapp-websocket.eastus.cloudapp.azure.com
