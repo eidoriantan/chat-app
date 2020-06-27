@@ -2,8 +2,8 @@
 
 namespace ChatApp\App;
 
-use Ratchet\MessageComponentInterface;
-use Ratchet\ConnectionInterface;
+use \Ratchet\MessageComponentInterface;
+use \Ratchet\ConnectionInterface;
 
 class Chat implements MessageComponentInterface {
   protected $clients;
