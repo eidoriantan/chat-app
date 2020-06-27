@@ -32,7 +32,7 @@ $websockets = new Server("0.0.0.0:$port", $loop);
 $websockets = new SecureServer($websockets, $loop, [
   'local_cert' => $cert,
   'local_pk' => $key,
-  'verify_peer' => false,
+  'verify_peer' => !$development,
   'allow_self_signed' => $development
 ]);
 
