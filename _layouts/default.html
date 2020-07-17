@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html dir="ltr" lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
   <meta name="theme-color" content="{{ site.color }}">
   <meta name="msapplication-TileColor" content="{{ site.color }}">
-
-  {% seo title=false %}
 
   <link href="{{ '/LICENSE.txt' | relative_url }}" rel="license">
   <link href="{{ '/site.webmanifest' | relative_url }}" rel="manifest">
@@ -25,6 +23,8 @@
   {% for script in page.scripts %}
   <script src="{{ script | append: '?v=' | append: site.github.build_revision | relative_url }}"></script>
   {% endfor %}
+
+  {% seo title=false %}
 
   <title>{% if page.title %}{{ page.title }} | {% endif %}Chat</title>
 </head>
